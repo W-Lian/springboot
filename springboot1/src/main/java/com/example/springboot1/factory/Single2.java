@@ -2,7 +2,7 @@ package com.example.springboot1.factory;
 
 import com.example.springboot1.dto.Student;
 
-//饿汉（线程安全版）
+//懒汉（线程安全版）
 public class Single2 {
 
     //volatile对静态变量的修饰能保证变量值在各线程访问是的同步性、唯一性
