@@ -13,11 +13,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @RestController
-@RequestMapping("getTest")
+@RequestMapping("/getTest")
 @Slf4j
 public class GetTest {
     
-    @GetMapping("test1")
+    @GetMapping("/test1")
     public String hello(@RequestParam String name){
         return "hello "+ name;
     }

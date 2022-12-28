@@ -1,7 +1,9 @@
 package com.example.springboot1.mapper;
 
 import com.example.springboot1.model.UmsAdmin;
+import org.springframework.stereotype.Repository;
 
+//@Repository
 public interface UmsAdminMapper {
     int deleteByPrimaryKey(Long id);
 
