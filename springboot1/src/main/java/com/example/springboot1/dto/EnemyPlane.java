@@ -8,6 +8,10 @@ public class EnemyPlane implements Cloneable{
     private int x;
     private int y;
 
+    public EnemyPlane(int x){
+        this.x = x;
+    }
+
     void fly(){
         y++;
     }
