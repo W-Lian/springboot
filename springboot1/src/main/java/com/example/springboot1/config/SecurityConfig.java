@@ -68,8 +68,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .permitAll()
                 .antMatchers(HttpMethod.OPTIONS)//跨域请求会先进行一次options请求
                 .permitAll()
-                .antMatchers("/**")//测试时全部运行访问
-                .permitAll()
+                .antMatchers("/user/operate/register") .permitAll() //注册放开
+                .antMatchers("/user/operate/login") .permitAll() //登录放开
+//                .antMatchers("/**") .permitAll()
                 .anyRequest()// 除上面外的所有请求全部需要鉴权认证
                 .authenticated();
         // 禁用缓存
@@ -99,8 +100,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return username -> {
             UmsAdmin admin = adminService.getAdminByUsername(username);
             if (admin != null) {
-                List<UmsPermission> permissionList = adminService.getPermissionList(admin.getId());
-                return new AdminUserDetails(admin,permissionList);
+                //TODO 暂时不考虑用户权限
+//                List<UmsPermission> permissionList = adminService.getPermissionList(admin.getId());
+//                return new AdminUserDetails(admin,permissionList);
+                return new AdminUserDetails(admin, null);
             }
             throw new UsernameNotFoundException("用户名或密码错误");
         };

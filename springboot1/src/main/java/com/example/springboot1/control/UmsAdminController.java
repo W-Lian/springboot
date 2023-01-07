@@ -22,8 +22,19 @@ public class UmsAdminController {
     UmsAdminService umsAdminService;
 
     @PostMapping("/register")
-    public CommonResult register(@RequestParam UmsAdmin umsAdminParam){
+    //RequestBody RequestParam
+    public CommonResult register(@RequestBody UmsAdmin umsAdminParam){
         return umsAdminService.register(umsAdminParam);
+    }
+
+    @PostMapping("/login")
+    public CommonResult login(@RequestBody UmsAdmin umsAdminParam){
+        return umsAdminService.login(umsAdminParam);
+    }
+
+    @GetMapping("/getAdminByUsername")
+    public CommonResult getAdminByUsername(@RequestBody UmsAdmin umsAdminParam){
+        return CommonResult.success(umsAdminService.getAdminByUsername(umsAdminParam.getUsername()));
     }
 
 }

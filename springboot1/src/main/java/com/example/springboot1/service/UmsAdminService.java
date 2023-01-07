@@ -13,8 +13,8 @@ public interface UmsAdminService {
 
 
     UmsAdmin getAdminByUsername(String username);
-    
-    //List<UmsPermission> permissionList = adminService.getPermissionList(admin.getId());
+
+    CommonResult login(UmsAdmin umsAdminParam);
 
     List<UmsPermission> getPermissionList(Long id);
 }
