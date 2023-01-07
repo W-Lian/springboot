@@ -161,4 +161,5 @@
     from ums_admin
     where username = #{name,jdbcType=VARCHAR}
   </select>
+
 </mapper>
