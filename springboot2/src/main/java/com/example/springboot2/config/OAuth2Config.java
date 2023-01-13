@@ -14,11 +14,16 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 @EnableAuthorizationServer
@@ -36,6 +41,15 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     RedisConnectionFactory redisConnectionFactory;
     @Autowired
     private DataSource dataSource;
+
+    @Autowired
+    private TokenStore jwtTokenStore;
+    @Autowired
+    private JwtAccessTokenConverter jwtAccessTokenConverter;
+
+    @Autowired
+    private TokenEnhancer jwtTokenEnhancer;
+
 
 //    @Bean
 //    public TokenStore redisTokenStore(){
@@ -71,10 +85,38 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
         /**
          * redis token 方式
          */
-        endpoints.authenticationManager(authenticationManager)
+//        endpoints.authenticationManager(authenticationManager)
+//                .userDetailsService(kiteUserDetailsService)
+//                .tokenStore(redisTokenStore);
+
+        /**
+         * 普通jwt模式
+         */
+//        endpoints.authenticationManager(authenticationManager)
+//                .userDetailsService(kiteUserDetailsService)
+//                .tokenStore(jwtTokenStore)
+//                .accessTokenConverter(jwtAccessTokenConverter);
+        /**
+         * 增强jwt模式
+         */
+        TokenEnhancerChain enhancerChain= new TokenEnhancerChain();
+        List<TokenEnhancer> enhancerList = new ArrayList<>();
+        enhancerList.add(jwtTokenEnhancer);
+        enhancerList.add(jwtAccessTokenConverter);
+        enhancerChain.setTokenEnhancers(enhancerList);
+        endpoints.tokenStore(jwtTokenStore)
                 .userDetailsService(kiteUserDetailsService)
-                .tokenStore(redisTokenStore);
+                .authenticationManager(authenticationManager)
+                .tokenEnhancer(enhancerChain)
+                .accessTokenConverter(jwtAccessTokenConverter);
+
     }
+
+//    @Bean
+//    public TokenEnhancer jwtTokenEnhancer(){
+//        return new JwtTokenEnhancer();
+////        return jwtTokenEnhancer;
+//    }
 
 
 }
