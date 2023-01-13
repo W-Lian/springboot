@@ -16,6 +16,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import javax.sql.DataSource;
 
@@ -29,22 +30,23 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     public AuthenticationManager authenticationManager;
     @Autowired
     public KiteUserDetailsService kiteUserDetailsService;
-//    @Autowired
-//    TokenStore redisTokenStore;
+    @Autowired
+    TokenStore redisTokenStore;
     @Autowired
     RedisConnectionFactory redisConnectionFactory;
     @Autowired
     private DataSource dataSource;
 
-    @Bean
-    public TokenStore redisTokenStore(){
-        return new RedisTokenStore(redisConnectionFactory);
-    }
+//    @Bean
+//    public TokenStore redisTokenStore(){
+//        return new RedisTokenStore(redisConnectionFactory);
+//    }
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.allowFormAuthenticationForClients();
         security.checkTokenAccess("isAuthenticated()");
         security.tokenKeyAccess("isAuthenticated()");
+
     }
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -61,8 +63,8 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
                 .accessTokenValiditySeconds(3600)
                 .scopes("all");
 
-        JdbcClientDetailsServiceBuilder jcsb = clients.jdbc(dataSource);
-        jcsb.passwordEncoder(passwordEncoder);
+//        JdbcClientDetailsServiceBuilder jcsb = clients.jdbc(dataSource);
+//        jcsb.passwordEncoder(passwordEncoder);
     }
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
@@ -71,7 +73,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
          */
         endpoints.authenticationManager(authenticationManager)
                 .userDetailsService(kiteUserDetailsService)
-                .tokenStore(redisTokenStore());
+                .tokenStore(redisTokenStore);
     }
 
 

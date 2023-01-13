@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping
 @Slf4j
 public class UserController {
 
     @GetMapping("/get")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public String get(Authentication authentication) {
+        log.info("进入get接口");
         authentication.getAuthorities();
         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
         String token = details.getTokenValue();

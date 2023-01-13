@@ -3,6 +3,7 @@ package com.example.springboot2.component;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,7 +21,7 @@ public class KiteUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.info("usernameis:" + username);
+        log.info("username is:" + username);
         // 查询数据库操作
         if(!username.equals("admin")){
             throw new UsernameNotFoundException("the user is not found");
@@ -31,7 +32,10 @@ public class KiteUserDetailsService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority(role));
             // 线上环境应该通过用户名查询数据库获取加密后的密码
             String password = passwordEncoder.encode("123456");
-            return new org.springframework.security.core.userdetails.User(username,password, authorities);
+//            return new org.springframework.security.core.userdetails.User(username,password, authorities);
+
+            User user = new User(username,password,authorities);
+            return user;
         }
     }
 

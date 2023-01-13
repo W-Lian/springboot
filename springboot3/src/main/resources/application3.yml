@@ -29,7 +29,3 @@ security:
       user-info-uri: user-info
     authorization:
       check-token-access: http://localhost:6001/oauth/check_token
-#    resource:
-#      jwt:
-#        key-uri: http://localhost:6001/oauth/token_key
-#        key-value: dev
