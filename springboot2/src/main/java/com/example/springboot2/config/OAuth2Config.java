@@ -51,10 +51,6 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     private TokenEnhancer jwtTokenEnhancer;
 
 
-//    @Bean
-//    public TokenStore redisTokenStore(){
-//        return new RedisTokenStore(redisConnectionFactory);
-//    }
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.allowFormAuthenticationForClients();
@@ -85,9 +81,9 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
         /**
          * redis token 方式
          */
-//        endpoints.authenticationManager(authenticationManager)
-//                .userDetailsService(kiteUserDetailsService)
-//                .tokenStore(redisTokenStore);
+        endpoints.authenticationManager(authenticationManager)
+                .userDetailsService(kiteUserDetailsService)
+                .tokenStore(redisTokenStore);
 
         /**
          * 普通jwt模式
@@ -99,24 +95,19 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
         /**
          * 增强jwt模式
          */
-        TokenEnhancerChain enhancerChain= new TokenEnhancerChain();
-        List<TokenEnhancer> enhancerList = new ArrayList<>();
-        enhancerList.add(jwtTokenEnhancer);
-        enhancerList.add(jwtAccessTokenConverter);
-        enhancerChain.setTokenEnhancers(enhancerList);
-        endpoints.tokenStore(jwtTokenStore)
-                .userDetailsService(kiteUserDetailsService)
-                .authenticationManager(authenticationManager)
-                .tokenEnhancer(enhancerChain)
-                .accessTokenConverter(jwtAccessTokenConverter);
+//        TokenEnhancerChain enhancerChain= new TokenEnhancerChain();
+//        List<TokenEnhancer> enhancerList = new ArrayList<>();
+//        enhancerList.add(jwtTokenEnhancer);
+//        enhancerList.add(jwtAccessTokenConverter);
+//        enhancerChain.setTokenEnhancers(enhancerList);
+//        endpoints.tokenStore(jwtTokenStore)
+//                .userDetailsService(kiteUserDetailsService)
+//                .authenticationManager(authenticationManager)
+//                .tokenEnhancer(enhancerChain)
+////                .tokenServices()
+//                .accessTokenConverter(jwtAccessTokenConverter);
 
     }
-
-//    @Bean
-//    public TokenEnhancer jwtTokenEnhancer(){
-//        return new JwtTokenEnhancer();
-////        return jwtTokenEnhancer;
-//    }
 
 
 }

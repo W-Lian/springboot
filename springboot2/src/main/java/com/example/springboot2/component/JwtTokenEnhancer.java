@@ -1,4 +1,4 @@
-package com.example.springboot2.config;
+package com.example.springboot2.component;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;

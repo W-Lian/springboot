@@ -1,7 +1,10 @@
 package com.example.springboot1.common.utils;
+import cn.hutool.core.lang.UUID;
+import cn.hutool.core.util.IdUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +20,7 @@ import java.util.Map;
  * Created by macro on 2018/4/26.
  */
 @Component
+@Slf4j
 public class JwtTokenUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenUtil.class);
     private static final String CLAIM_KEY_USERNAME = "sub";
@@ -67,9 +71,12 @@ public class JwtTokenUtil {
      */
     public String getUserNameFromToken(String token) {
         String username;
+        String id;
         try {
             Claims claims = getClaimsFromToken(token);
             username =  claims.getSubject();
+            id = (String) claims.get("uuid");
+            log.info("uuid:"+id);
         } catch (Exception e) {
             username = null;
         }
@@ -110,6 +117,8 @@ public class JwtTokenUtil {
         Map<String, Object> claims = new HashMap<>();
         claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
         claims.put(CLAIM_KEY_CREATED, new Date());
+
+        claims.put("uuid", IdUtil.simpleUUID());
         return generateToken(claims);
     }
 
