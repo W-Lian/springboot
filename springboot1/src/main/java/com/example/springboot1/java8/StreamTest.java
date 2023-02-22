@@ -24,7 +24,8 @@ public class StreamTest {
                 new Transaction(raoul, 2011, 400),
                 new Transaction(mario, 2012, 710),
                 new Transaction(mario, 2012, 700),
-                new Transaction(alan, 2012, 950)
+                new Transaction(alan, 2012, 950),
+                new Transaction(alan, 2013, 950)
         );
 
         /**
@@ -38,10 +39,11 @@ public class StreamTest {
          * (8) 找到交易额最小的交易。
          */
 
-//        transactions.stream()
-//                .filter(transaction -> transaction.getYear() == 2012)
-//                .sorted(Comparator.comparing(Transaction::getValue))
-//                .forEach(transaction-> System.out.println(transaction));
+        transactions.stream()
+                .filter(transaction -> transaction.getYear() != 2012)
+                .filter(transaction -> transaction.getYear() != 2011)
+                .sorted(Comparator.comparing(Transaction::getValue))
+                .forEach(transaction-> System.out.println(transaction));
 
 //        transactions.stream()
 //                .map(transaction -> transaction.getTrader().getCity())
@@ -74,9 +76,9 @@ public class StreamTest {
 //                .reduce(Integer :: max);
 //        System.out.println(max);
 
-        Optional<Transaction> min = transactions.stream()
-                .min(Comparator.comparing(Transaction::getValue));
-        System.out.println(min);
+//        Optional<Transaction> min = transactions.stream()
+//                .min(Comparator.comparing(Transaction::getValue));
+//        System.out.println(min);
     }
 
 

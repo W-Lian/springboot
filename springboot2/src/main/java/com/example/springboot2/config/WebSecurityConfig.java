@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/**").permitAll();
+                .antMatchers("/client-authcode/login") .permitAll(); //注册放开;
     }
 
 //    @Bean

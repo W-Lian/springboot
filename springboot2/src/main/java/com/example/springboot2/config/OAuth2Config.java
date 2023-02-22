@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.builders.JdbcClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -71,6 +72,13 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
                 .secret(passwordEncoder.encode("user-secret-8888"))
                 .authorizedGrantTypes("refresh_token", "authorization_code", "password")
                 .accessTokenValiditySeconds(3600)
+                .scopes("all")
+                .and()
+                .withClient("code-client")
+                .secret(passwordEncoder.encode("code-secret-8888"))
+                .authorizedGrantTypes("authorization_code","refresh_token")
+                .accessTokenValiditySeconds(3600)
+                .redirectUris("http://localhost:6102/client-authcode/login")
                 .scopes("all");
 
 //        JdbcClientDetailsServiceBuilder jcsb = clients.jdbc(dataSource);
@@ -107,6 +115,12 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 ////                .tokenServices()
 //                .accessTokenConverter(jwtAccessTokenConverter);
 
+    }
+
+    public static void main(String[] args) {
+//        System.out.println("111");
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        System.out.println(passwordEncoder.encode("V4JD2eBK50xFoXTt6MjcySgfdIPvQ"));
     }
 
 

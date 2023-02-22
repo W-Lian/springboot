@@ -27,9 +27,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 //    @Autowired
 //    private RemoteTokenServices tokenServices;
 
-    @Value("${security.oauth2.client.client-id}")
+    @Value("${security.oauth2.client.cid}")
     private String clientId;
-    @Value("${security.oauth2.client.client-secret}")
+    @Value("${security.oauth2.client.csecret}")
     private String secret;
     @Value("${security.oauth2.authorization.check-token-access}")
     private String checkTokenEndpointUrl;
@@ -51,12 +51,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Bean
     public RemoteTokenServices tokenServices(){
         RemoteTokenServices tokenServices = new RemoteTokenServices();
-//        tokenServices.setClientId(clientId);
-//        tokenServices.setClientSecret(secret);
-//        tokenServices.setCheckTokenEndpointUrl(checkTokenEndpointUrl);
-        tokenServices.setClientId("user-client");
-        tokenServices.setClientSecret("user-secret-8888");
-        tokenServices.setCheckTokenEndpointUrl("http://localhost:6001/oauth/check_token");
+        tokenServices.setClientId(clientId);
+        tokenServices.setClientSecret(secret);
+        tokenServices.setCheckTokenEndpointUrl(checkTokenEndpointUrl);
+//        tokenServices.setClientId("user-client");
+//        tokenServices.setClientSecret("user-secret-8888");
+//        tokenServices.setCheckTokenEndpointUrl("http://localhost:6001/oauth/check_token");
         return tokenServices;
     }
 

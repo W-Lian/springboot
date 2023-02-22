@@ -18,6 +18,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +59,12 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         umsAdmin.setPassword(password);
         umsAdminMapper.insert(umsAdmin);
         return CommonResult.success(ums);
+    }
+
+    public static void main(String[] args) {
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String password = passwordEncoder.encode("V4JD2eBK50xFoXTt6MjcySgfdIPvQ");
+        System.out.println(password);
     }
 
     @Override
