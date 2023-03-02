@@ -1,7 +1,11 @@
 package com.example.springboot1.control;
 
 import com.example.springboot1.common.api.CommonResult;
+import com.example.springboot1.common.utils.JwtTokenUtil;
+import com.example.springboot1.control.vo.UmsAdminLoginLogVO;
+import com.example.springboot1.convert.UmsAdminLoginLogConvert;
 import com.example.springboot1.model.UmsAdmin;
+import com.example.springboot1.model.UmsAdminLoginLog;
 import com.example.springboot1.service.UmsAdminService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +24,9 @@ public class UmsAdminController {
 
     @Autowired
     UmsAdminService umsAdminService;
+    
+    @Autowired
+    JwtTokenUtil jwtTokenUtil;
 
     @PostMapping("/register")
     //RequestBody RequestParam
@@ -36,5 +43,12 @@ public class UmsAdminController {
     public CommonResult getAdminByUsername(@RequestBody UmsAdmin umsAdminParam){
         return CommonResult.success(umsAdminService.getAdminByUsername(umsAdminParam.getUsername()));
     }
+
+    @PostMapping("/refreshToken")
+    public String refreshToken(@RequestParam String token){
+        return jwtTokenUtil.refreshToken(token);
+    }
+
+    
 
 }

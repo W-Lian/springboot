@@ -1,11 +1,11 @@
-package com.example.springboot1.model;
+package com.example.springboot5.entity;
 
-import java.util.Date;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+
+import java.util.Date;
 
 /**
     * 后台用户表
@@ -14,7 +14,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UmsAdmin {
+public class UmsAdminDO {
     private Long id;
 
     private String username;
