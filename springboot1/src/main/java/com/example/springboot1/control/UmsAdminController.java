@@ -1,6 +1,8 @@
 package com.example.springboot1.control;
 
+import com.example.springboot1.common.annotation.Log;
 import com.example.springboot1.common.api.CommonResult;
+import com.example.springboot1.common.enums.BusinessType;
 import com.example.springboot1.common.utils.JwtTokenUtil;
 import com.example.springboot1.control.vo.UmsAdminLoginLogVO;
 import com.example.springboot1.convert.UmsAdminLoginLogConvert;
@@ -29,7 +31,7 @@ public class UmsAdminController {
     JwtTokenUtil jwtTokenUtil;
 
     @PostMapping("/register")
-    //RequestBody RequestParam
+    @Log(title = "注册", businessType = BusinessType.REGISTER)
     public CommonResult register(@RequestBody UmsAdmin umsAdminParam){
         return umsAdminService.register(umsAdminParam);
     }

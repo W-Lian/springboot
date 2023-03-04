@@ -58,7 +58,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         String password = passwordEncoder.encode(umsAdmin.getPassword());
         umsAdmin.setPassword(password);
         umsAdminMapper.insert(umsAdmin);
-        return CommonResult.success(ums);
+        return CommonResult.success(umsAdmin);
     }
 
     public static void main(String[] args) {
