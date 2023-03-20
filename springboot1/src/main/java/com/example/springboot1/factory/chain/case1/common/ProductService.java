@@ -63,6 +63,19 @@ public class ProductService {
      * @return
      */
     private ProductCheckHandlerConfig getHandlerConfigFile() {
+
+        /**
+         * {
+         * 	"handler": "nullValueCheckHandler",
+         * 	"down": false,
+         * 	"next": {
+         * 		"handler": "priceCheckHandler",
+         * 		"next": {
+         * 			"handler": "stockCheckHandler",
+         * 			"next": null
+         *                }* 	}
+         * }
+         */
         //配置中心存储的配置
         String configJson = "{\"handler\":\"nullValueCheckHandler\",\"down\":false,\"next\":{\"handler\":\"priceCheckHandler\",\"next\":{\"handler\":\"stockCheckHandler\",\"next\":null}}}";
         //转成Config对象

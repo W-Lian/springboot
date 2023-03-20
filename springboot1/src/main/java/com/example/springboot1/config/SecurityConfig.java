@@ -72,6 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/operate/login") .permitAll() //登录放开
                 .antMatchers("/loginLog/**") .permitAll() //登录放开
                 .antMatchers("/chainTest/**") .permitAll() //登录放开
+                .antMatchers("/sendExpress/**") .permitAll() //登录放开
 //                .antMatchers("/**") .permitAll()
                 .anyRequest()// 除上面外的所有请求全部需要鉴权认证
                 .authenticated();
