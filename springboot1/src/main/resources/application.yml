@@ -9,12 +9,12 @@ spring:
   alarm:
 #    mail:
 #      enabled: true
-#      smtpHost: pop.163.com
-#      smtpPort: 22
-#      to: 1553279148@qq.com
-#      from: wlian19941025@163.com
-#      username: wlian19941025@163.com
-#      password: GAZRITPAJLPRNJZI
+#      smtpHost: xxx.com
+#      smtpPort: xxx
+#      to: xx@qq.com
+#      from: xxx@163.com
+#      username: xx@163.com
+#      password: xx
     template:
       # 开启通过模板配置
       enabled: true
