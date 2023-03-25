@@ -64,8 +64,26 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>4.5.7</version>
+            <version>5.8.8</version>
         </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-http</artifactId>
+            <version>5.8.8</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        
+<!--        <dependency>-->
+<!--            <groupId>cn.hutool</groupId>-->
+<!--            <artifactId>hutool-extra</artifactId>-->
+<!--            <version>5.8.8</version>-->
+<!--        </dependency>-->
         <!--JWT(Json Web Token)登录支持-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
