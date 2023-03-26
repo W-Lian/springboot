@@ -1,11 +1,7 @@
 package com.example.springboot5;
 
-import com.example.springboot5.entity.UmsAdminDO;
-import com.sun.deploy.net.HttpResponse;
 import org.junit.Test;
-//import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import sun.net.www.http.HttpClient;
 
 @SpringBootTest
 class Springboot5ApplicationTests {

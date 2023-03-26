@@ -21,6 +21,7 @@
         <module>springboot3</module>
         <module>springboot4</module>
         <module>springboot5</module>
+        <module>sp6</module>
     </modules>
 
     <dependencies>
