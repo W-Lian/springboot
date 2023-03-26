@@ -11,4 +11,8 @@ public abstract class ExpressEventSubscriber {
      * @param express 快递
      */
     public abstract void arrive(Express express) ;
+    
+    public String getType(){
+        return "default";
+    }
 }
