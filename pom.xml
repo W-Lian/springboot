@@ -23,6 +23,8 @@
         <module>springboot5</module>
         <module>sp6</module>
         <module>sp7</module>
+        <module>sp8</module>
+        <module>sp9</module>
     </modules>
 
     <dependencies>

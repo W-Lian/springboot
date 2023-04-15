@@ -15,6 +15,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping("/chainTest")
@@ -35,6 +39,28 @@ public class ChainTest {
                 .build();
         productService.createProduct(param);
         return "success";
+    }
+
+    public static void main(String[] args) {
+        List<String> nameInfo = new ArrayList<>();
+        nameInfo.add("张三");
+        nameInfo.add("李斯");
+        nameInfo.add("王二");
+        nameInfo.add("胡非");
+        /********************************************/
+        List<String> userName=new ArrayList<>();
+        userName.add("张非");
+        userName.add("李斯");
+        userName.add("王非");
+        userName.add("郑非");
+//        userName.contains();
+        List<String> info = nameInfo.stream()
+                .filter(userName::contains)
+                .collect(toList());
+        
+        System.out.println("两个集合的差集："+nameInfo.removeAll(userName));
+        System.out.println("nameInfo："+nameInfo);
+        System.out.println("两个集合的交集："+info);
     }
 
   

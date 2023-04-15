@@ -12,7 +12,7 @@ spring:
       maximum-pool-size: 9
   redis:
     database: 2
-    host: localhost
+    host: 192.168.142.121
     port: 6379
     password: 123456
     jedis:

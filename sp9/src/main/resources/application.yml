@@ -1,0 +1,14 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+  port: 7003
+  connection-timeout: 5000ms
+#  servlet:
+#    context-path: /rocket-mq
+
+rocketmq:
+  producer:
+    group: sanyouProducer
+  name-server: 192.168.142.129:9876
